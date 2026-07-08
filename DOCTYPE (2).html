@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Enables | Hobbaz</title>
+  <meta name="description" content="Catálogo oficial de Enables de Hobbaz. Documento visual y descriptivo con buscador, categorías y tabla lista para imprimir o exportar a PDF." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#071022;
+      --bg-2:#0a1730;
+      --panel:#0d1d39;
+      --panel-soft:rgba(15, 31, 58, 0.74);
+      --line:#1d3f78;
+      --line-soft:rgba(75,128,214,.25);
+      --text:#eef4ff;
+      --muted:#b8c6e6;
+      --blue:#24a3ff;
+      --blue-2:#5ec8ff;
+      --cyan:#6ce8ff;
+      --orange:#ff9b3d;
+      --danger:#ff5a67;
+      --ok:#71f0b0;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1280px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"Outfit", sans-serif;
+      background:
+        radial-gradient(circle at 0% 50%, rgba(36,163,255,.28), transparent 20%),
+        radial-gradient(circle at 100% 35%, rgba(255,155,61,.22), transparent 18%),
+        radial-gradient(circle at 50% 0%, rgba(22,54,120,.35), transparent 35%),
+        linear-gradient(180deg, #03081a 0%, #071022 35%, #09152b 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        radial-gradient(circle at 20% 20%, #fff 0 2px, transparent 2px),
+        radial-gradient(circle at 80% 30%, #fff 0 2px, transparent 2px),
+        radial-gradient(circle at 70% 80%, #fff 0 1.5px, transparent 1.5px),
+        radial-gradient(circle at 30% 75%, #fff 0 1.5px, transparent 1.5px);
+      background-size: 180px 180px, 220px 220px, 160px 160px, 240px 240px;
+      background-position: 0 0, 20px 40px, 60px 120px, 100px 20px;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      left:0; right:0; bottom:0;
+      height:28vh;
+      pointer-events:none;
+      opacity:.28;
+      background:
+        linear-gradient(transparent, rgba(16, 72, 155, .15)),
+        repeating-linear-gradient(
+          90deg,
+          rgba(34,130,255,.28) 0 2px,
+          transparent 2px 70px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(34,130,255,.22) 0 2px,
+          transparent 2px 70px
+        );
+      transform:perspective(600px) rotateX(70deg);
+      transform-origin:bottom;
+    }
+
+    .container{
+      width:min(calc(100% - 32px), var(--max));
+      margin-inline:auto;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      animation:rise .8s ease forwards;
+    }
+    .reveal:nth-child(1){animation-delay:.05s}
+    .reveal:nth-child(2){animation-delay:.12s}
+    .reveal:nth-child(3){animation-delay:.2s}
+    .reveal:nth-child(4){animation-delay:.28s}
+    .reveal:nth-child(5){animation-delay:.36s}
+
+    @keyframes rise{
+      to{opacity:1; transform:none}
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(16px);
+      background:linear-gradient(180deg, rgba(5,10,22,.88), rgba(5,10,22,.58));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:74px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:var(--text);
+    }
+
+    .brand-badge{
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:900;
+      letter-spacing:.04em;
+      color:#fff6e8;
+      background:linear-gradient(135deg, #08b1ff, #207cff);
+      box-shadow:0 10px 30px rgba(24,143,255,.35), inset 0 1px 0 rgba(255,255,255,.25);
+      border:1px solid rgba(255,255,255,.2);
+    }
+
+    .brand-meta{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .brand-meta strong{
+      font-family:"Space Grotesk", sans-serif;
+      font-size:1rem;
+      letter-spacing:.04em;
+    }
+
+    .brand-meta span{
+      font-size:.82rem;
+      color:var(--muted);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .button{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.25s ease;
+      font-family:inherit;
+    }
+
+    .button-primary{
+      color:#03111f;
+      background:linear-gradient(135deg, var(--cyan), var(--blue));
+      box-shadow:0 14px 30px rgba(36,163,255,.25);
+    }
+    .button-primary:hover{transform:translateY(-2px) scale(1.02)}
+    .button-primary:active{transform:translateY(0) scale(.98)}
+
+    .button-ghost{
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .button-ghost:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-2px);
+    }
+
+    header.hero{
+      padding:42px 0 24px;
+    }
+
+    .hero-shell{
+      display:grid;
+      grid-template-columns:1.3fr .7fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hero-copy{
+      position:relative;
+      padding:38px clamp(22px, 4vw, 46px);
+      border-radius:32px;
+      background:
+        linear-gradient(180deg, rgba(8,20,43,.8), rgba(8,18,36,.72)),
+        linear-gradient(135deg, rgba(36,163,255,.08), transparent 45%);
+      border:1px solid rgba(89,149,255,.18);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .hero-copy::before{
+      content:"";
+      position:absolute;
+      inset:auto -10% -35% auto;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(36,163,255,.18), transparent 65%);
+      filter:blur(8px);
+      z-index:-1;
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin:0 0 18px;
+      color:var(--orange);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.98rem;
+    }
+
+    .eyebrow::after{
+      content:"";
+      height:1px;
+      flex:1;
+      background:linear-gradient(90deg, var(--orange), transparent);
+      opacity:.8;
+    }
+
+    h1{
+      margin:0;
+      font-family:"Space Grotesk", sans-serif;
+      font-size:clamp(2.8rem, 7vw, 5.6rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+      text-transform:uppercase;
+      max-width:12ch;
+    }
+
+    .accent{color:var(--blue)}
+
+    .hero-sub{
+      max-width:720px;
+      margin:24px 0 28px;
+      font-size:clamp(1.02rem, 1.8vw, 1.45rem);
+      line-height:1.35;
+      color:var(--muted);
+    }
+
+    .chip-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-top:8px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--text);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .chip i{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      display:inline-block;
+      background:currentColor;
+      box-shadow:0 0 18px currentColor;
+    }
+
+    .chip.orange{color:var(--orange)}
+    .chip.blue{color:var(--blue)}
+    .chip.white{color:#d9e5ff}
+
+    .hero-panel{
+      position:relative;
+      padding:18px;
+      border-radius:30px;
+      background:
+        linear-gradient(180deg, rgba(17,26,52,.78), rgba(17,24,46,.66));
+      border:1px solid rgba(89,149,255,.25);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-height:100%;
+    }
+
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(36,163,255,.22), transparent 20%),
+        radial-gradient(circle at 80% 80%, rgba(36,163,255,.18), transparent 18%);
+      pointer-events:none;
+    }
+
+    .mini-catalog{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      position:relative;
+      z-index:1;
+      min-height:100%;
+    }
+
+    .mini-item{
+      position:relative;
+      display:grid;
+      place-items:center;
+      min-height:138px;
+      border-radius:22px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      transition:.25s ease;
+    }
+
+    .mini-item:hover{
+      transform:translateY(-4px);
+      border-color:rgba(94,200,255,.35);
+      box-shadow:0 14px 30px rgba(0,0,0,.28);
+    }
+
+    .mini-label{
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      font-weight:800;
+      font-size:.85rem;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+
+    .avatar{
+      width:72px;
+      height:102px;
+      position:relative;
+      filter:drop-shadow(0 0 20px rgba(36,163,255,.25));
+    }
+
+    .avatar .head,
+    .avatar .body,
+    .avatar .arm,
+    .avatar .leg{
+      position:absolute;
+      background:#c9ccd2;
+      border:2px solid #6f7889;
+    }
+
+    .avatar .head{
+      width:30px;height:30px;border-radius:50%;
+      left:21px;top:0;
+    }
+    .avatar .body{
+      width:22px;height:38px;border-radius:10px;
+      left:25px;top:28px;
+    }
+    .avatar .arm.left{width:9px;height:30px;border-radius:10px;left:17px;top:32px;transform:rotate(12deg)}
+    .avatar .arm.right{width:9px;height:30px;border-radius:10px;right:17px;top:32px;transform:rotate(-10deg)}
+    .avatar .leg.left{width:10px;height:32px;border-radius:10px;left:24px;bottom:0;transform:rotate(4deg)}
+    .avatar .leg.right{width:10px;height:32px;border-radius:10px;right:24px;bottom:0;transform:rotate(-4deg)}
+
+    .fx-ring::after,
+    .fx-glow::after,
+    .fx-fire::after,
+    .fx-board::after,
+    .fx-badge::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      pointer-events:none;
+    }
+
+    .fx-glow::after{
+      bottom:2px;
+      width:52px;height:16px;border-radius:50%;
+      background:radial-gradient(circle, rgba(36,163,255,.9), rgba(36,163,255,.25) 45%, transparent 70%);
+    }
+    .fx-board::after{
+      bottom:4px;
+      width:58px;height:10px;border-radius:12px;
+      background:linear-gradient(90deg, #5ec8ff, #2d8dff);
+      box-shadow:0 0 18px rgba(45,141,255,.55);
+    }
+    .fx-fire::after{
+      top:22px;
+      width:18px;height:28px;
+      background:radial-gradient(circle at 50% 80%, #ffd86a 0 25%, #ff8c2b 35%, #ff4d1a 60%, transparent 68%);
+      filter:blur(.2px);
+    }
+    .fx-ring::after{
+      top:8px;
+      width:58px;height:58px;border-radius:50%;
+      border:4px solid rgba(36,163,255,.95);
+      box-shadow:0 0 22px rgba(36,163,255,.5), inset 0 0 14px rgba(36,163,255,.25);
+    }
+    .fx-badge::after{
+      top:-4px;
+      width:26px;height:26px;border-radius:50%;
+      background:radial-gradient(circle, #f4c560 20%, #c98b1d 65%, transparent 66%);
+    }
+
+    .toolbar{
+      padding:18px 0 14px;
+    }
+
+    .toolbar-shell{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+      padding:16px;
+      border-radius:24px;
+      background:var(--panel-soft);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .search-group,
+    .filter-group{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .field,
+    .select{
+      flex:1 1 240px;
+      min-height:52px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:0 16px;
+      font:inherit;
+      outline:none;
+      transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    .field::placeholder{color:#98abd4}
+    .field:focus,
+    .select:focus{
+      border-color:rgba(94,200,255,.55);
+      box-shadow:0 0 0 4px rgba(94,200,255,.14);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin:16px 0 24px;
+    }
+
+    .stat{
+      padding:18px 18px 16px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.07);
+      box-shadow:var(--shadow);
+    }
+
+    .stat .k{
+      display:block;
+      font-family:"Space Grotesk", sans-serif;
+      font-size:clamp(1.6rem, 3vw, 2.4rem);
+      line-height:1;
+      margin-bottom:6px;
+      color:#fff;
+    }
+
+    .stat .t{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:12px;
+      margin:18px 0 16px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-family:"Space Grotesk", sans-serif;
+      font-size:clamp(1.6rem, 3vw, 2.5rem);
+      letter-spacing:-.04em;
+      text-transform:uppercase;
+    }
+
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .table-wrap{
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(94,200,255,.18);
+      box-shadow:var(--shadow);
+      background:linear-gradient(180deg, rgba(11,23,46,.88), rgba(8,18,36,.9));
+    }
+
+    .table-scroll{
+      overflow:auto;
+      max-height:72vh;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:920px;
+    }
+
+    thead th{
+      position:sticky;
+      top:0;
+      z-index:3;
+      background:linear-gradient(180deg, #5ce1e6, #47bfd6);
+      color:#042131;
+      text-align:left;
+      padding:16px 16px;
+      font-size:.98rem;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      font-weight:900;
+      border-bottom:1px solid rgba(4,33,49,.25);
+    }
+
+    tbody tr{
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:background .2s ease, transform .2s ease;
+    }
+
+    tbody tr:hover{
+      background:rgba(94,200,255,.06);
+    }
+
+    td{
+      padding:14px 16px;
+      vertical-align:middle;
+    }
+
+    td.num{
+      width:110px;
+      font-family:"Space Grotesk", sans-serif;
+      font-weight:700;
+      font-size:1.05rem;
+      color:#ffffff;
+    }
+
+    td.cat{width:180px}
+    td.desc{color:#eaf2ff}
+    td.keys{color:#9db2da}
+    td.status{
+      width:140px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    .status-ok{color:var(--ok)}
+    .status-off{color:var(--danger)}
+
+    .thumb{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      position:relative;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 2px, transparent 2px 10px);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .thumb .mini-avatar{
+      position:absolute;
+      left:50%; top:50%;
+      transform:translate(-50%,-50%) scale(.62);
+      width:72px; height:102px;
+    }
+
+    .thumb .badge-x{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:var(--danger);
+      font-size:2rem;
+      font-weight:900;
+      font-family:"Space Grotesk", sans-serif;
+      text-shadow:0 0 18px rgba(255,90,103,.25);
+    }
+
+    .empty{
+      display:none;
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .footer{
+      padding:30px 0 54px;
+      color:var(--muted);
+    }
+
+    .footer-box{
+      padding:20px 22px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+    }
+
+    .note{
+      font-size:.96rem;
+      line-height:1.5;
+    }
+
+    @media (max-width: 1080px){
+      .hero-shell,
+      .toolbar-shell{
+        grid-template-columns:1fr;
+      }
+      .stats{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 700px){
+      .topbar-inner{
+        min-height:auto;
+        padding:12px 0;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      h1{max-width:10ch}
+      .stats{grid-template-columns:1fr}
+      .chip-row{gap:10px}
+      .hero-panel{min-height:420px}
+      .mini-catalog{grid-template-columns:1fr 1fr}
+    }
+
+    @media print{
+      body{
+        background:#fff;
+        color:#000;
+      }
+      body::before, body::after, .topbar, .toolbar, .hero-panel, .nav-actions{
+        display:none !important;
+      }
+      .hero-copy, .table-wrap, .stat, .footer-box{
+        box-shadow:none;
+        background:#fff;
+        border:1px solid #ccc;
+        color:#000;
+      }
+      .hero-sub, .t, .note, .section-title p, td.keys{color:#333 !important}
+      thead th{
+        background:#d8f4f5 !important;
+        color:#000 !important;
+      }
+      .table-scroll{
+        max-height:none;
+        overflow:visible;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a href="#inicio" class="brand" aria-label="Ir al inicio del catálogo">
+        <span class="brand-badge">HOBBAZ</span>
+        <span class="brand-meta">
+          <strong>Catálogo de Enables</strong>
+          <span>Formato visual listo para PDF</span>
+        </span>
+      </a>
+      <div class="nav-actions">
+        <button class="button button-ghost" id="loadDemo">Cargar demo</button>
+        <button class="button button-primary" onclick="window.print()">Exportar / Imprimir</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero" id="inicio">
+    <div class="container hero-shell">
+      <section class="hero-copy reveal">
+        <p class="eyebrow">Catálogo oficial</p>
+        <h1>Catálogo completo de <span class="accent">Enables</span> Hobbaz</h1>
+        <p class="hero-sub">
+          Guía visual y descriptiva de todos los enables disponibles para usuarios en Hobbaz.
+          Este formato está pensado para que luego puedas reemplazar o completar la información
+          que venga en tu PDF y generar un catálogo limpio, elegante y fácil de buscar.
+        </p>
+        <div class="chip-row">
+          <span class="chip orange"><i></i>Formato estilo portada</span>
+          <span class="chip blue"><i></i>Buscador por nombre y keywords</span>
+          <span class="chip white"><i></i>Listo para imprimir en PDF</span>
+        </div>
+      </section>
+
+      <aside class="hero-panel reveal" aria-label="Vista previa de categorías">
+        <div class="mini-catalog">
+          <div class="mini-item">
+            <div class="avatar fx-ring">
+              <span class="head"></span><span class="body"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span>
+            </div>
+            <span class="mini-label">Disfraces</span>
+          </div>
+          <div class="mini-item">
+            <div class="avatar fx-board">
+              <span class="head"></span><span class="body"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span>
+            </div>
+            <span class="mini-label">Transportes</span>
+          </div>
+          <div class="mini-item">
+            <div class="avatar fx-fire">
+              <span class="head"></span><span class="body"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span>
+            </div>
+            <span class="mini-label">Efectos</span>
+          </div>
+          <div class="mini-item">
+            <div class="avatar fx-glow">
+              <span class="head"></span><span class="body"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span>
+            </div>
+            <span class="mini-label">Accesorios</span>
+          </div>
+          <div class="mini-item">
+            <div class="avatar fx-badge">
+              <span class="head"></span><span class="body"></span><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span>
+            </div>
+            <span class="mini-label">Medallas</span>
+          </div>
+          <div class="mini-item">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;text-align:left;line-height:1.2;">
+              <div style="color:var(--blue-2);font-size:2.1rem;font-weight:700;">400+</div>
+              <div style="font-weight:800;">Enables activos</div>
+              <div style="color:var(--muted);margin-top:8px;">Diseño inspirado en la referencia visual que compartiste.</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="toolbar reveal" aria-label="Herramientas del catálogo">
+      <div class="toolbar-shell">
+        <div class="search-group">
+          <input id="searchInput" class="field" type="search" placeholder="Buscar enable por número, nombre o palabra clave..." aria-label="Buscar enable" />
+          <select id="statusFilter" class="select" aria-label="Filtrar por disponibilidad">
+            <option value="all">Todos los estados</option>
+            <option value="disponible">Disponibles</option>
+            <option value="no disponible">No disponibles</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="categoryFilter" class="select" aria-label="Filtrar por categoría">
+            <option value="all">Todas las categorías</option>
+          </select>
+          <button class="button button-ghost" id="resetFilters">Limpiar filtros</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats reveal" aria-label="Estadísticas del catálogo">
+      <article class="stat">
+        <span class="k" id="statTotal">0</span>
+        <span class="t">Registros cargados</span>
+      </article>
+      <article class="stat">
+        <span class="k" id="statAvailable">0</span>
+        <span class="t">Disponibles</span>
+      </article>
+      <article class="stat">
+        <span class="k" id="statUnavailable">0</span>
+        <span class="t">No disponibles</span>
+      </article>
+      <article class="stat">
+        <span class="k" id="statVisible">0</span>
+        <span class="t">Resultados visibles</span>
+      </article>
+    </section>
+
+    <section class="reveal">
+      <div class="section-title">
+        <div>
+          <h2>Listado de enables</h2>
+          <p>
+            En este documento se presentan todos los enables disponibles para usuarios en Hobbaz.
+            Los que figuren como “No disponible” pueden estar inactivos o ser exclusivos de Staff.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table aria-describedby="catalogDescription">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Palabras clave</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="catalogBody"></tbody>
+          </table>
+          <div class="empty" id="emptyState">No se encontraron resultados con los filtros actuales.</div>
+        </div>
+      </div>
+      <p id="catalogDescription" class="note" style="margin-top:14px;">
+        Puedes usar <strong>Ctrl + F</strong> o el buscador superior para localizar un enable más rápido.
+        Cuando me compartas el PDF, puedo convertir toda la información real a este mismo formato.
+      </p>
+    </section>
+
+    <section class="footer reveal">
+      <div class="footer-box">
+        <p class="note">
+          <strong>Nota:</strong> Este catálogo es una versión base inspirada en tu referencia visual.
+          Actualmente incluye una estructura profesional, portada, estadísticas, buscador, filtros y una tabla elegante.
+          En cuanto adjuntes el PDF, puedo reemplazar estos datos de muestra por el catálogo completo real y dejarlo listo para exportar.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <template id="thumbTemplate">
+    <div class="thumb">
+      <div class="mini-avatar avatar">
+        <span class="head"></span>
+        <span class="body"></span>
+        <span class="arm left"></span>
+        <span class="arm right"></span>
+        <span class="leg left"></span>
+        <span class="leg right"></span>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    const demoData = [
+      { numero: 1, nombre: "Foco", categoria: "Efectos", keywords: "iluminado, luz", estado: "Disponible", fx: "glow" },
+      { numero: 2, nombre: "Tabla voladora azul", categoria: "Transportes", keywords: "tabla, hover, azul", estado: "Disponible", fx: "board" },
+      { numero: 3, nombre: "Coche volador azul", categoria: "Transportes", keywords: "auto, futurista, nave", estado: "Disponible", fx: "ring" },
+      { numero: 4, nombre: "Brillos", categoria: "Efectos", keywords: "brillitos, destello", estado: "Disponible", fx: "glow" },
+      { numero: 5, nombre: "Antorcha", categoria: "Efectos", keywords: "llama, fuego", estado: "Disponible", fx: "fire" },
+      { numero: 16, nombre: "Micrófono en la mano", categoria: "Accesorios", keywords: "cantar, micrófono", estado: "Disponible", fx: "badge" },
+      { numero: 19, nombre: "Coche de policía", categoria: "Transportes", keywords: "auto, policía", estado: "Disponible", fx: "ring" },
+      { numero: 31, nombre: "Leopardo", categoria: "Disfraces", keywords: "orejas, cola, animal, guepardo", estado: "Disponible", fx: "ring" },
+      { numero: 44, nombre: "Los Sims", categoria: "Accesorios", keywords: "plumbob, cristal", estado: "Disponible", fx: "badge" },
+      { numero: 53, nombre: "Pajaritos", categoria: "Efectos", keywords: "pollitos, patitos, pájaros en la cabeza", estado: "Disponible", fx: "glow" },
+      { numero: 70, nombre: "Cabeza de Oso panda", categoria: "Disfraces", keywords: "kung fu panda, po", estado: "Disponible", fx: "ring" },
+      { numero: 85, nombre: "Cabeza de Calabaza", categoria: "Disfraces", keywords: "jack-o-lantern, halloween", estado: "Disponible", fx: "ring" },
+      { numero: 90, nombre: "Alas de mariposa moradas", categoria: "Accesorios", keywords: "alas, mariposa, moradas", estado: "Disponible", fx: "glow" },
+      { numero: 92, nombre: "Fantasma", categoria: "Disfraces", keywords: "sábana", estado: "Disponible", fx: "glow" },
+      { numero: 100, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "inactivo", estado: "No disponible", fx: "none" },
+      { numero: 101, nombre: "Pistola de Sheriff", categoria: "Accesorios", keywords: "arma, revólver, policía", estado: "Disponible", fx: "badge" },
+      { numero: 109, nombre: "Medalla de Bronce", categoria: "Medallas", keywords: "bronce", estado: "Disponible", fx: "badge" },
+      { numero: 110, nombre: "Medalla de Plata", categoria: "Medallas", keywords: "plata", estado: "Disponible", fx: "badge" },
+      { numero: 111, nombre: "Medalla de Oro", categoria: "Medallas", keywords: "oro", estado: "Disponible", fx: "badge" },
+      { numero: 112, nombre: "Máscara de Spiderman", categoria: "Disfraces", keywords: "hombre araña", estado: "Disponible", fx: "ring" },
+      { numero: 132, nombre: "Fantasma radiactivo", categoria: "Disfraces", keywords: "sábana, verde, fluorescente", estado: "Disponible", fx: "glow" },
+      { numero: 141, nombre: "Máscara de carnaval veneciano", categoria: "Disfraces", keywords: "carnaval, veneciano", estado: "Disponible", fx: "ring" },
+      { numero: 154, nombre: "Huevo de pascua", categoria: "Accesorios", keywords: "pascua", estado: "Disponible", fx: "badge" },
+      { numero: 170, nombre: "Pato", categoria: "Accesorios", keywords: "duck", estado: "Disponible", fx: "badge" },
+      { numero: 178, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "inactivo", estado: "No disponible", fx: "none" },
+      { numero: 191, nombre: "Hoverboard blanco", categoria: "Transportes", keywords: "patineta eléctrica, skate", estado: "Disponible", fx: "board" },
+      { numero: 200, nombre: "Levitación ligera", categoria: "Efectos", keywords: "levanta al keko del suelo", estado: "Disponible", fx: "glow" },
+      { numero: 221, nombre: "Gato negro", categoria: "Accesorios", keywords: "gato, negro", estado: "Disponible", fx: "badge" },
+      { numero: 222, nombre: "Aureola multicolor", categoria: "Accesorios", keywords: "corona, halo", estado: "Disponible", fx: "ring" },
+      { numero: 230, nombre: "Rodeado por dragón naranja", categoria: "Efectos", keywords: "dragón, naranja", estado: "Disponible", fx: "fire" },
+      { numero: 233, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "rango inactivo", estado: "No disponible", fx: "none" },
+      { numero: 500, nombre: "Girar sobre uno mismo", categoria: "Animaciones", keywords: "giros, dar vueltas, rotar", estado: "Disponible", fx: "glow" },
+      { numero: 504, nombre: "Hoverboard negra", categoria: "Transportes", keywords: "patineta eléctrica", estado: "Disponible", fx: "board" },
+      { numero: 509, nombre: "Subfusil MP5 negro", categoria: "Accesorios", keywords: "arma, rifle", estado: "Disponible", fx: "badge" },
+      { numero: 523, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "inactivo", estado: "No disponible", fx: "none" },
+      { numero: 525, nombre: "Escudo holográfico azul", categoria: "Accesorios", keywords: "escudo, azul", estado: "Disponible", fx: "ring" },
+      { numero: 528, nombre: "Sable láser rojo", categoria: "Accesorios", keywords: "espada", estado: "Disponible", fx: "fire" },
+      { numero: 540, nombre: "Bastón dorado espiral", categoria: "Accesorios", keywords: "bastón, dorado", estado: "Disponible", fx: "badge" },
+      { numero: 554, nombre: "Hoz ensangrentada", categoria: "Accesorios", keywords: "guadaña, muerte", estado: "Disponible", fx: "fire" },
+      { numero: 562, nombre: "Emoji STOP en la cabeza", categoria: "Efectos", keywords: "placa, rojo", estado: "Disponible", fx: "badge" },
+      { numero: 564, nombre: "Animación corazón arcoiris", categoria: "Animaciones", keywords: "lgbt, corazón", estado: "Disponible", fx: "glow" },
+      { numero: 572, nombre: "JEEP negro", categoria: "Transportes", keywords: "camioneta, coche, auto", estado: "Disponible", fx: "ring" },
+      { numero: 596, nombre: "Coche deportivo rojo", categoria: "Transportes", keywords: "auto, carro", estado: "Disponible", fx: "ring" },
+      { numero: 612, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "inactivo", estado: "No disponible", fx: "none" },
+      { numero: 616, nombre: "Cabeza de Homer Simpson", categoria: "Disfraces", keywords: "homero, caricatura, dibujo animado", estado: "Disponible", fx: "ring" },
+      { numero: 628, nombre: "Llave dorada en mano", categoria: "Accesorios", keywords: "llave, dorada", estado: "Disponible", fx: "badge" },
+      { numero: 645, nombre: "Fuegos artificiales rojos", categoria: "Efectos", keywords: "destellos, brillos", estado: "Disponible", fx: "fire" },
+      { numero: 648, nombre: "Mini pikachu", categoria: "Accesorios", keywords: "pikachu, pokemon", estado: "Disponible", fx: "badge" },
+      { numero: 651, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "inactivo", estado: "No disponible", fx: "none" },
+      { numero: 662, nombre: "Emoji enamorado", categoria: "Efectos", keywords: "cabeza, corazones, amor", estado: "Disponible", fx: "glow" },
+      { numero: 671, nombre: "Emoji diablo", categoria: "Efectos", keywords: "atrevido, morado", estado: "Disponible", fx: "glow" },
+      { numero: 681, nombre: "Animación Boo!", categoria: "Animaciones", keywords: "fantasma, susto, halloween", estado: "Disponible", fx: "glow" },
+      { numero: 688, nombre: "Animación unicornio rosa", categoria: "Animaciones", keywords: "rosado", estado: "Disponible", fx: "glow" },
+      { numero: 689, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "rango inactivo", estado: "No disponible", fx: "none" },
+      { numero: 880, nombre: "Among Us rojo", categoria: "Disfraces", keywords: "among us, rojo", estado: "Disponible", fx: "ring" },
+      { numero: 889, nombre: "Among Us turquesa", categoria: "Disfraces", keywords: "aqua, celeste, azul claro", estado: "Disponible", fx: "ring" },
+      { numero: 904, nombre: "NO DISPONIBLE", categoria: "Sin categoría", keywords: "rango inactivo", estado: "No disponible", fx: "none" },
+      { numero: 1000, nombre: "VIP dorado", categoria: "Medallas", keywords: "oro, vip", estado: "Disponible", fx: "badge" },
+      { numero: 2000, nombre: "Fantasma rojo", categoria: "Disfraces", keywords: "sábana, espectro, disfraz", estado: "Disponible", fx: "fire" },
+      { numero: 2001, nombre: "Atado / Amarrado", categoria: "Efectos", keywords: "cuerdas, secuestrado", estado: "Disponible", fx: "glow" }
+    ];
+
+    const bodyEl = document.getElementById("catalogBody");
+    const searchInput = document.getElementById("searchInput");
+    const statusFilter = document.getElementById("statusFilter");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const resetFiltersBtn = document.getElementById("resetFilters");
+    const emptyState = document.getElementById("emptyState");
+
+    const statTotal = document.getElementById("statTotal");
+    const statAvailable = document.getElementById("statAvailable");
+    const statUnavailable = document.getElementById("statUnavailable");
+    const statVisible = document.getElementById("statVisible");
+
+    let catalog = [...demoData];
+
+    function titleCase(str){
+      return String(str).replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function createThumb(item){
+      const tpl = document.getElementById("thumbTemplate");
+      const node = tpl.content.firstElementChild.cloneNode(true);
+
+      if((item.estado || "").toLowerCase() === "no disponible"){
+        node.innerHTML = '<div class="badge-x">X</div>';
+        return node;
+      }
+
+      const avatar = node.querySelector(".mini-avatar");
+      if(item.fx === "glow") avatar.classList.add("fx-glow");
+      if(item.fx === "board") avatar.classList.add("fx-board");
+      if(item.fx === "fire") avatar.classList.add("fx-fire");
+      if(item.fx === "ring") avatar.classList.add("fx-ring");
+      if(item.fx === "badge") avatar.classList.add("fx-badge");
+
+      return node;
+    }
+
+    function renderTable(data){
+      bodyEl.innerHTML = "";
+      data.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.dataset.search = [
+          item.numero,
+          item.nombre,
+          item.categoria,
+          item.keywords,
+          item.estado
+        ].join(" ").toLowerCase();
+
+        const imageTd = document.createElement("td");
+        imageTd.appendChild(createThumb(item));
+
+        const statusClass = (item.estado || "").toLowerCase() === "no disponible" ? "status-off" : "status-ok";
+
+        tr.innerHTML = `
+          <td class="num">${item.numero}</td>
+          <td class="desc"><strong>${item.nombre}</strong></td>
+          <td class="cat">${item.categoria}</td>
+          <td class="keys">${item.keywords || "—"}</td>
+          <td class="status ${statusClass}">${item.estado}</td>
+        `;
+        tr.insertBefore(imageTd, tr.firstChild);
+        bodyEl.appendChild(tr);
+      });
+
+      emptyState.style.display = data.length ? "none" : "block";
+      statVisible.textContent = data.length;
+    }
+
+    function populateCategories(){
+      const categories = [...new Set(catalog.map(item => item.categoria).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+      categoryFilter.innerHTML = `<option value="all">Todas las categorías</option>`;
+      categories.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat.toLowerCase();
+        opt.textContent = cat;
+        categoryFilter.appendChild(opt);
+      });
+    }
+
+    function updateStats(){
+      statTotal.textContent = catalog.length;
+      statAvailable.textContent = catalog.filter(i => i.estado.toLowerCase() !== "no disponible").length;
+      statUnavailable.textContent = catalog.filter(i => i.estado.toLowerCase() === "no disponible").length;
+    }
+
+    function applyFilters(){
+      const q = searchInput.value.trim().toLowerCase();
+      const status = statusFilter.value;
+      const category = categoryFilter.value;
+
+      const filtered = catalog.filter(item => {
+        const matchSearch = !q || [item.numero, item.nombre, item.categoria, item.keywords, item.estado].join(" ").toLowerCase().includes(q);
+        const itemStatus = item.estado.toLowerCase();
+        const matchStatus =
+          status === "all" ||
+          (status === "disponible" && itemStatus !== "no disponible") ||
+          (status === "no disponible" && itemStatus === "no disponible");
+        const matchCategory =
+          category === "all" ||
+          item.categoria.toLowerCase() === category;
+
+        return matchSearch && matchStatus && matchCategory;
+      });
+
+      renderTable(filtered);
+    }
+
+    function init(){
+      populateCategories();
+      updateStats();
+      renderTable(catalog);
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    statusFilter.addEventListener("change", applyFilters);
+    categoryFilter.addEventListener("change", applyFilters);
+
+    resetFiltersBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      statusFilter.value = "all";
+      categoryFilter.value = "all";
+      applyFilters();
+    });
+
+    document.getElementById("loadDemo").addEventListener("click", () => {
+      catalog = [...demoData];
+      populateCategories();
+      updateStats();
+      applyFilters();
+    });
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.style.animationPlayState = "running";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .14 });
+
+    document.querySelectorAll(".reveal").forEach(el=>{
+      el.style.animationPlayState = "paused";
+      observer.observe(el);
+    });
+
+    init();
+
+    /*
+      CUANDO ME PASES EL PDF:
+      - puedo convertir el contenido real a este HTML
+      - puedo dejar toda la tabla completa
+      - si tienes imágenes recortadas de cada enable, también se pueden integrar
+      - si prefieres, puedo generarte una versión aún más parecida a la portada de la referencia
+    */
+  </script>
+</body>
+</html>
